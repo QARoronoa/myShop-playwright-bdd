@@ -51,4 +51,41 @@ def user_click_on_signOut_button(browserInstance):
     home_page.click_on_signOut_button()
 
 
+@when('the user click on forgot your password')
+def user_click_on_forgot_your_password(browserInstance):
+    login_page = LoginPage(browserInstance)
+    login_page.click_on_forgot_password_link()
+
+@then('the user he redirected to forgot your password')
+def user_see_forgot_your_password_title(browserInstance):
+    login_page = LoginPage(browserInstance)
+    login_page.verify_title_page("Forgot your password - My Shop")
+
+@when('the user enter an email address')
+def user_fill_emailAddress_forgot_password(browserInstance):
+    login_page = LoginPage(browserInstance)
+    login_page.fill_emailAddress_field_forgot_password("roronoa12@ymail.com")
+
+@when('the user enter an nonexistent email address')
+def user_fill_emailAddress_forgot_password(browserInstance):
+    login_page = LoginPage(browserInstance)
+    login_page.fill_emailAddress_field_forgot_password("cddf@ymail.com")
+
+@step('the user clicks on "Retrieve Password" button')
+def user_click_on_Retrieve_Password_button(browserInstance):
+    login_page = LoginPage(browserInstance)
+    login_page.click_on_retrieve_password_button()
+
+@then('the user sees a message confirming that an email has been sent')
+def user_see_cinfirming_message(browserInstance):
+    login_page = LoginPage(browserInstance)
+    login_page.verify_alert_message_forgot_password("A confirmation email")
+
+@then('the user sees a message confirming email is not registered')
+def user_see_cinfirming_message(browserInstance):
+    login_page = LoginPage(browserInstance)
+    login_page.verify_alert_message_forgot_password("There is 1 error")
+
+
+
 

@@ -51,3 +51,23 @@ Feature: Authentification
     Examples:
       | email              | password |
       | roronoa12@ymail.com|123456    |
+
+  Scenario: user click on "forgot your password link"
+    Given the user is on the home page
+    When they click the "Sign in" button
+    Then Authentication title is visible
+    When the user click on forgot your password
+    Then the user he redirected to forgot your password
+    When the user enter an email address
+    And the user clicks on "Retrieve Password" button
+    Then the user sees a message confirming that an email has been sent
+
+   Scenario: user click on "forgot your password link" and enter an email nonexistent
+    Given the user is on the home page
+    When they click the "Sign in" button
+    Then Authentication title is visible
+    When the user click on forgot your password
+    Then the user he redirected to forgot your password
+    When the user enter an nonexistent email address
+    And the user clicks on "Retrieve Password" button
+    Then the user sees a message confirming email is not registered

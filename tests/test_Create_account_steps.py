@@ -16,18 +16,23 @@ def User_click_signIn(browserInstance):
     home_page= HomePage(browserInstance)
     home_page.click_on_signIn_button()
 
-@then('Authentification title is visible')
-def User_visualise_authentification_title(browserInstance):
+@then('Authentication title is visible')
+def User_visualise_authentication_title(browserInstance):
     login_page = LoginPage(browserInstance)
     login_page.visualiser_le_titre_authentification()
 
-@when(parsers.parse('Enter new adress email {email}'))
-def User_enter_new_adress_email(browserInstance, saisir_email_create_account):
+@when(parsers.parse('Enter new address email {email}'))
+def User_enter_new_address_email(browserInstance, saisir_email_create_account):
     login_page = LoginPage(browserInstance)
     login_page.enter_email_create_acount(saisir_email_create_account["email"])
 
 @when(parsers.parse('Enter an existing email {email}'))
 def User_enter_existing_email(browserInstance, email):
+    login_page = LoginPage(browserInstance)
+    login_page.enter_email_create_acount_with_existing_email(email)
+
+@when(parsers.parse('Enter an invalid email {email}'))
+def user_enter_an_invalid_email(browserInstance, email):
     login_page = LoginPage(browserInstance)
     login_page.enter_email_create_acount_with_existing_email(email)
 
@@ -57,6 +62,10 @@ def User_see_error_message_create_account(browserInstance):
     login_page = LoginPage(browserInstance)
     login_page.verify_error_message_create_account("An account using this email address has already been registered. Please enter a valid password or request a new one. ")
 
+@then('The user see the error message "invalid address"')
+def User_see_error_invalid_address(browserInstance):
+    login_page = LoginPage(browserInstance)
+    login_page.verify_error_message_create_account("Invalid email address.")
 @then('The user see the error message invalid email address')
 def User_see_error_message_invalid_address(browserInstance):
     login_page = LoginPage(browserInstance)

@@ -16,7 +16,7 @@ def User_click_signIn(browserInstance):
     home_page.click_on_signIn_button()
 
 @then('Authentication title is visible')
-def User_visualise_authentification_title(browserInstance):
+def User_visualise_authentication_title(browserInstance):
     login_page = LoginPage(browserInstance)
     login_page.visualiser_le_titre_authentification()
 
